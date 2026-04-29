@@ -3,10 +3,12 @@ import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import birthdayRoutes from "./routes/birthday.route"
+import cors from "cors"
 dotenv.config()
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 const PORT = process.env.PORT
 console.log(PORT)
 

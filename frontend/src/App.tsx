@@ -1,4 +1,6 @@
-import LandingPage from "./pages/landingPage"
+import BirthdayPage from "./pages/BirthdayPage"
+import LandingPage from "./pages/LandingPage"
+import { Routes, Route } from "react-router"
 
 
 function App() {
@@ -6,8 +8,11 @@ function App() {
 
   return (
     <>
-
-     <LandingPage/>
+      <Routes>
+        <Route index element={<LandingPage/>}/>
+        <Route path="/:id" element={<BirthdayPage/>}/>
+      </Routes>
+       
     </>
   )
 }

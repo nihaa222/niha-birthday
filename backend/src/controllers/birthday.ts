@@ -37,3 +37,19 @@ export const createBirthdayUser = async (req: Request<{}, {}, BirthdayBody>, res
     })
   }
 }
+
+export const getBirthdayUser = async (req: Request<{ id: string }>, res: Response) => {
+  try {
+    const { id } = req.params;
+    const user = await Birthday.findOne({ uniqueCode: id })
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.send({ birthdayUser: user })
+  } catch (error) {
+    res.status(500).json({
+      message: error instanceof Error ? error.message : "Internal Server Error"
+    })
+  }
+}
