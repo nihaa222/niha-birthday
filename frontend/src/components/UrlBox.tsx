@@ -1,10 +1,11 @@
 
 import { FaRegCopy } from "react-icons/fa6";
 function UrlBox({ uniqueCode }: { uniqueCode: string }) {
-    const frontendPort = import.meta.env.VITE_FRONTEND_PORT
-    console.log(import.meta.env)
-    console.log(frontendPort)
-    const url = `${frontendPort}/${uniqueCode}`
+    // const frontendPort = import.meta.env.VITE_FRONTEND_PORT
+    // console.log(import.meta.env)
+    // console.log(frontendPort)
+    // const url = `${frontendPort}/${uniqueCode}`
+    const url = `${window.location.origin}/${uniqueCode}`
 
     const handleCopy = async () => {
         try{

@@ -19,7 +19,9 @@ function BirthdayPage() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/birthdayData/getuser/${id}`);
+        // const res = await axios.get(`http://localhost:5000/birthdayData/getuser/${id}`);
+          const res = await axios.get(`/api/birthdayData/getuser/${id}`);
+
         setUser(res.data.birthdayUser)  
       } catch (error) {
         setInvalid(true)

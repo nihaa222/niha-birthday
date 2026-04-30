@@ -18,7 +18,9 @@ function LandingPage() {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     try {
       e.preventDefault();
-      const res = await axios.post("http://localhost:5000/birthdayData/create", birthdayData)
+      // const res = await axios.post("http://localhost:5000/birthdayData/create", birthdayData)
+    const res = await axios.post("/api/birthdayData/create", birthdayData)
+
       console.log(res)
       setUniqueCode(res.data.uniqueCode)
       setAnimate(true)
