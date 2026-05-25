@@ -5,6 +5,7 @@ function UrlBox({ uniqueCode }: { uniqueCode: string }) {
     console.log(import.meta.env)
     console.log(frontendPort)
     const url = `${frontendPort}/${uniqueCode}`
+    console.log(url)
 
     const handleCopy = async () => {
         try{
