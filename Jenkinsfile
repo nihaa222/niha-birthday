@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Deploy') {
+        stage('Check Docker') {
             steps {
-                sh 'docker compose up -d --build'
+                sh 'docker --version'
+                sh 'docker compose version'
             }
         }
     }
