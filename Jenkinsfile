@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Docker Test') {
+        stage('Check Workspace') {
             steps {
-               sh 'docker ps'
+                sh 'pwd'
+                sh 'ls -la'
             }
         }
     }
