@@ -2,10 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Check Workspace') {
+        stage('Deploy') {
             steps {
-                sh 'pwd'
-                sh 'ls -la'
+                sh 'docker compose up -d --build'
             }
         }
     }
