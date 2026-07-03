@@ -1,14 +1,4 @@
 services:
-  frontend:
-    build: ./frontend
-    container_name: birthday-frontend-compose
-    ports:
-      - "80:80"
-    env_file:
-      - ./frontend/.env 
-    depends_on:
-      - backend
-
   backend:
     build: ./backend
     container_name: birthday-backend-compose
@@ -16,4 +6,3 @@ services:
       - "5000:5000"
     env_file:
       - ./backend/.env
-
