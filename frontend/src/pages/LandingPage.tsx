@@ -39,7 +39,7 @@ function LandingPage() {
         <img className="absolute bottom-5 right-5" src={baloon}></img>
         <div className="absolute gap-8 md:gap-10 w-[80%] py-10 justify-between  mx-auto flex flex-col lg:flex-row  top-1/2 -translate-x-1/2 -translate-y-1/2 left-1/2">
           <div className="text-3xl md:5xl lg:text-7xl">
-            <p className="bg-orange-300 text-white text-nowrap text-center p-2">CREATE A</p>
+            <p className="bg-orange-300 text-white text-nowrap text-center p-2">CREATE AAAAAAAAAAAAAAA</p>
             <p className="bg-red-700 text-white text-center">BIRTHDAY</p>
             <p className="bg-orange-300 text-white text-center p-2">CARD</p>
           </div>
