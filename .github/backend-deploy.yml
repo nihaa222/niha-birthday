@@ -19,7 +19,15 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
+
           script: |
             cd ~/niha-birthday
+
+            cat > backend/.env << EOF
+            PORT=${{ secrets.PORT }}
+            MONGO=${{ secrets.MONGO }}
+            EOF
+
             git pull origin main
+
             docker compose up -d --build
