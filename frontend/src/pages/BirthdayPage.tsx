@@ -15,12 +15,13 @@ function BirthdayPage() {
   const { id } = useParams();
   const [user, setUser] = useState<BirthdayUser | null>(null)
   const [invalid, setInvalid] = useState(false)
+  const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
   
   useEffect(() => {
     const fetchUser = async () => {
       try {
         // const res = await axios.get(`http://localhost:5000/birthdayData/getuser/${id}`);
-          const res = await axios.get(`/birthdayData/getuser/${id}`);
+          const res = await axios.get(`${BASE_URL}/birthdayData/getuser/${id}`);
 
         setUser(res.data.birthdayUser)  
       } catch (error) {

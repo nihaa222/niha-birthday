@@ -8,6 +8,7 @@ function LandingPage() {
   let [animate, setAnimate] = useState(false)
   const [uniqueCode, setUniqueCode] = useState()
   console.log(animate)
+const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
 
   const [birthdayData, setbirthdayData] = useState({
     name: "",
@@ -19,7 +20,7 @@ function LandingPage() {
     try {
       e.preventDefault();
       // const res = await axios.post("http://localhost:5000/birthdayData/create", birthdayData)
-      const res = await axios.post("/birthdayData/create", birthdayData)
+      const res = await axios.post(`${BASE_URL}/birthdayData/create`,birthdayData);
 
       console.log(res)
       setUniqueCode(res.data.uniqueCode)
