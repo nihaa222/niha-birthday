@@ -30,6 +30,7 @@ const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
       console.log(error)
     }
   }
+  // ss
   return (
     <>
       {animate && (<div className="h-screen w-full z-20 bg-white/30 backdrop-blur-sm absolute"></div>)}
