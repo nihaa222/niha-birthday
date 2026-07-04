@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'frontend/**'
-      - '.github/workflows/frontend-deply.yml'
+      - '.github/workflows/frontend-deploy.yml'
 
 jobs:
   deploy:
@@ -28,6 +28,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Create .env
+        run: |
+          echo "VITE_BACKEND_PORT=${{ secrets.VITE_BACKEND_URL }}" > .env
+
       - name: Build project
         run: npm run build
 
@@ -46,4 +50,4 @@ jobs:
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
-            --paths "/*"
+            --paths "/index.html"
