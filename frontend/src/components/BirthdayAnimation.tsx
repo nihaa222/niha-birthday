@@ -1,8 +1,18 @@
 import  { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import UrlBox from "./UrlBox"
-
-const BirthdayAnimation = ({ uniqueCode }: { uniqueCode: string }) => {
+type LandingPageProps = {
+  uniqueCode: string;
+  birthdayData: {
+    name: string;
+    age: string;
+    message: string;
+    
+  };
+  close: boolean
+  setClose: React.Dispatch<React.SetStateAction<boolean>>;
+};
+const BirthdayAnimation = ({birthdayData, close, setClose, uniqueCode}:LandingPageProps) => {
 
   const [done, setDone] = useState(false)
 
@@ -54,7 +64,7 @@ const BirthdayAnimation = ({ uniqueCode }: { uniqueCode: string }) => {
             >
               <div className="border-2 border-black p-3 text-center">
                 <p className="text-xs font-bold m-0">BIRTHDAY</p>
-                <h1 className="text-2xl text-blue-500 m-0">JORDAN</h1>
+                <h1 className="text-2xl text-blue-500 m-0">{birthdayData.name}</h1>
               </div>
             </motion.div>
 
@@ -76,7 +86,7 @@ const BirthdayAnimation = ({ uniqueCode }: { uniqueCode: string }) => {
 
         <div className="h-screen w-full flex items-center justify-center  overflow-hidden">
 
-          <motion.div initial={{ y: 800, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, delay: 0.8 }}><UrlBox uniqueCode={uniqueCode} /></motion.div>
+          <motion.div initial={{ y: 800, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, delay: 0.8 }}><UrlBox close={close} setClose={setClose} uniqueCode={uniqueCode} /></motion.div>
         </div>
 
       )}

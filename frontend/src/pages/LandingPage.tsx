@@ -1,20 +1,53 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import baloon from "../assets/baloon.png"
 import axios from "axios"
-
-
 import BirthdayAnimation from "../components/BirthdayAnimation"
-function LandingPage() {
+
+
+type LandingPageProps = {
+  birthdayData: {
+    name: string;
+    age: string;
+    message: string;
+    
+  };
+  setClose: React.Dispatch<React.SetStateAction<boolean>>;
+  close: boolean;
+  
+  setbirthdayData: React.Dispatch<
+  React.SetStateAction<{
+    name:string;
+    age:string;
+    message: string;
+  }>
+  >
+}
+function LandingPage({birthdayData, setClose, close, setbirthdayData}: LandingPageProps) {
   let [animate, setAnimate] = useState(false)
+  // let [close, setClose] = useState(false)
+  console.log("close", close)
   const [uniqueCode, setUniqueCode] = useState()
-  console.log(animate)
+
 const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
 
-  const [birthdayData, setbirthdayData] = useState({
-    name: "",
-    age: "",
-    message: ""
-  })
+  // const [birthdayData, setbirthdayData] = useState({
+  //   name: "",
+  //   age: "",
+  //   message: ""
+  // })
+
+  useEffect(() => {
+    if (close) {
+      setbirthdayData({
+        name: "",
+        age: "",
+        message: ""
+      })
+    }
+  },[close])
+
+
+  
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     try {
@@ -23,6 +56,7 @@ const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
       const res = await axios.post(`${BASE_URL}/birthdayData/create`,birthdayData);
 
       console.log(res)
+      setClose(false);
       setUniqueCode(res.data.uniqueCode)
       setAnimate(true)
       console.log(animate)
@@ -33,7 +67,7 @@ const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
   // ss
   return (
     <>
-      {animate && (<div className="h-screen w-full z-20 bg-white/30 backdrop-blur-sm absolute"></div>)}
+      {animate && !close && (<div className="h-screen w-full z-20 bg-white/30 backdrop-blur-sm absolute"></div>)}
       <div className="bg-yellow-50 overflow-hidden relative h-screen w-screen ">
         <img className="absolute top-5 left-5" src={baloon}></img>
         <img className="absolute bottom-5 left-5" src={baloon}></img>
@@ -41,7 +75,7 @@ const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
         <img className="absolute bottom-5 right-5" src={baloon}></img>
         <div className="absolute gap-8 md:gap-10 w-[80%] py-10 justify-between  mx-auto flex flex-col lg:flex-row  top-1/2 -translate-x-1/2 -translate-y-1/2 left-1/2">
           <div className="text-3xl md:5xl lg:text-7xl">
-            <p className="bg-orange-300 text-white text-nowrap text-center p-2">CREATE AAAAAAAAAAAAAAA</p>
+            <p className="bg-orange-300 text-white text-nowrap text-center p-2">CREATE A</p>
             <p className="bg-red-700 text-white text-center">BIRTHDAY</p>
             <p className="bg-orange-300 text-white text-center p-2">CARD</p>
           </div>
@@ -76,7 +110,7 @@ const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
       {uniqueCode &&
         < div className="z-30 absolute inset-0">
 
-          <BirthdayAnimation uniqueCode={uniqueCode} />
+          <BirthdayAnimation setClose={setClose} close={close} birthdayData={birthdayData} uniqueCode={uniqueCode} />
         </div >
       }
       {/* </>

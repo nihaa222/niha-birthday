@@ -1,10 +1,17 @@
 
 import { FaRegCopy } from "react-icons/fa6";
-function UrlBox({ uniqueCode }: { uniqueCode: string }) {
+
+
+type UrlBoxProps = {
+  uniqueCode: string;
+  setClose: React.Dispatch<React.SetStateAction<boolean>>;
+  close: boolean
+};
+function UrlBox({ uniqueCode, setClose, close}: UrlBoxProps) {
     const frontendPort = import.meta.env.VITE_FRONTEND_PORT
     console.log(import.meta.env)
     console.log(frontendPort)
-    const url = `${frontendPort}${uniqueCode}`
+    const url = `${frontendPort}/${uniqueCode}`
     console.log(url)
 
     const handleCopy = async () => {
@@ -17,7 +24,8 @@ function UrlBox({ uniqueCode }: { uniqueCode: string }) {
     }
     return (
         <>
-
+           {!close && (
+            <>
             <div className=' rounded-tl-xl rounded-tr-xl h-32 w-80 p-4 shadow-xl bg-white '>
                 <p className='text-xl mb-6'>Send this link</p>
                 <div className='flex gap-4'>
@@ -27,8 +35,11 @@ function UrlBox({ uniqueCode }: { uniqueCode: string }) {
                 </div>
             </div>
             <div className=' rounded-bl-xl  rounded-br-xl w-80 bg-blue-400 p-3 text-white bold text-center'>
-                <button>Close</button>
+                <button onClick={() => setClose(true)}>Close</button>
             </div>
+            </>
+           )}
+           
         </>
     )
 }

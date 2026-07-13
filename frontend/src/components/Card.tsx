@@ -10,7 +10,7 @@ type BirthdayUser = {
 }
 
 function Card({ user }: { user: BirthdayUser }) {
-  console.log(user)
+
 
   const [open, setOpen] = useState(false)
 
