@@ -101,8 +101,8 @@ function LandingPage({ birthdayData, setClose, close, setbirthdayData }: Landing
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  disabled={loading || !close}
-                  className={`rounded-2xl px-2 py-2 mt-4 text-white ${loading || !close
+                  disabled={loading}
+                  className={`rounded-2xl px-2 py-2 mt-4 text-white ${loading
                       ? "bg-purple-300 cursor-not-allowed"
                       : "bg-purple-500 hover:bg-purple-600"
                     }`}
