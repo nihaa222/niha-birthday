@@ -9,26 +9,27 @@ type LandingPageProps = {
     name: string;
     age: string;
     message: string;
-    
+
   };
   setClose: React.Dispatch<React.SetStateAction<boolean>>;
   close: boolean;
-  
+
   setbirthdayData: React.Dispatch<
-  React.SetStateAction<{
-    name:string;
-    age:string;
-    message: string;
-  }>
+    React.SetStateAction<{
+      name: string;
+      age: string;
+      message: string;
+    }>
   >
 }
-function LandingPage({birthdayData, setClose, close, setbirthdayData}: LandingPageProps) {
+function LandingPage({ birthdayData, setClose, close, setbirthdayData }: LandingPageProps) {
   let [animate, setAnimate] = useState(false)
+  const [loading, setLoading] = useState(false);
   // let [close, setClose] = useState(false)
   console.log("close", close)
   const [uniqueCode, setUniqueCode] = useState()
 
-const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
+  const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
 
   // const [birthdayData, setbirthdayData] = useState({
   //   name: "",
@@ -44,16 +45,17 @@ const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
         message: ""
       })
     }
-  },[close])
+  }, [close])
 
 
-  
+
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     try {
       e.preventDefault();
+      setLoading(true)
       // const res = await axios.post("http://localhost:5000/birthdayData/create", birthdayData)
-      const res = await axios.post(`${BASE_URL}/birthdayData/create`,birthdayData);
+      const res = await axios.post(`${BASE_URL}/birthdayData/create`, birthdayData);
 
       console.log(res)
       setClose(false);
@@ -62,6 +64,8 @@ const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
       console.log(animate)
     } catch (error) {
       console.log(error)
+    } finally {
+      setLoading(false)
     }
   }
   // ss
@@ -95,8 +99,15 @@ const BASE_URL = import.meta.env.VITE_BACKEND_PORT;
                 <input onChange={(e) => setbirthdayData({ ...birthdayData, message: e.target.value })} value={birthdayData.message} name="message" placeholder="Message" className="bg-gray-100 p-2 mb-3"></input>
               </div>
               <div className="flex justify-center">
-                <button type="submit" className="button rounded-2xl bg-purple-500 text-white px-2 py-2 mt-4 ">
-                  CREATE
+                <button
+                  type="submit"
+                  disabled={loading || !close}
+                  className={`rounded-2xl px-2 py-2 mt-4 text-white ${loading || !close
+                      ? "bg-purple-300 cursor-not-allowed"
+                      : "bg-purple-500 hover:bg-purple-600"
+                    }`}
+                >
+                  {loading ? "Creating..." : "CREATE"}
                 </button>
               </div>
 

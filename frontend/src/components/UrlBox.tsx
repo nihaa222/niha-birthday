@@ -13,6 +13,7 @@ function UrlBox({ uniqueCode, setClose, close}: UrlBoxProps) {
     console.log(frontendPort)
     const url = `${frontendPort}/${uniqueCode}`
     console.log(url)
+    const shortUrl = url.length > 20  ? url.slice(0, 20) + "..." : url;
 
     const handleCopy = async () => {
         try{
@@ -31,7 +32,7 @@ function UrlBox({ uniqueCode, setClose, close}: UrlBoxProps) {
                 <div className='flex gap-4'>
 
                     <button><FaRegCopy size={22} onClick={handleCopy} /></button>
-                    <p>{url}</p>
+                    <p>{shortUrl}</p>
                 </div>
             </div>
             <div className=' rounded-bl-xl  rounded-br-xl w-80 bg-blue-400 p-3 text-white bold text-center'>
