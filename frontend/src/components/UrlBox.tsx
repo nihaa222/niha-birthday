@@ -46,3 +46,4 @@ function UrlBox({ uniqueCode, setClose, close}: UrlBoxProps) {
 }
 
 export default UrlBox
+ 
