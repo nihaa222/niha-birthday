@@ -94,17 +94,45 @@ function LandingPage({ birthdayData, setClose, close, setbirthdayData }: Landing
                 <label htmlFor="age">Age</label>
                 <input type="number" value={birthdayData.age} onChange={(e) => setbirthdayData({ ...birthdayData, age: e.target.value })} name="age" placeholder="Age" className="bg-gray-100 p-2 mb-3"></input>
               </div>
+              {/* <div className="flex flex-col gap-2">
+                <label htmlFor="message">Message</label>
+                <input     maxLength={300} onChange={(e) => setbirthdayData({ ...birthdayData, message: e.target.value })} value={birthdayData.message} name="message" placeholder="Message" className="bg-gray-100 p-2 mb-3"></input>
+              </div> */}
+
               <div className="flex flex-col gap-2">
                 <label htmlFor="message">Message</label>
-                <input onChange={(e) => setbirthdayData({ ...birthdayData, message: e.target.value })} value={birthdayData.message} name="message" placeholder="Message" className="bg-gray-100 p-2 mb-3"></input>
+
+                <textarea
+                  name="message"
+                  value={birthdayData.message}
+                  onChange={(e) =>
+                    setbirthdayData({
+                      ...birthdayData,
+                      message: e.target.value,
+                    })
+                  }
+                  maxLength={300}
+                  rows={5}
+                  placeholder="Write your birthday message..."
+                  className="bg-gray-100 p-2 resize-none"
+                />
+
+                <p
+                  className={`text-sm text-right ${300 - birthdayData.message.length <= 20
+                      ? "text-red-500"
+                      : "text-gray-500"
+                    }`}
+                >
+                  {300 - birthdayData.message.length} characters remaining
+                </p>
               </div>
               <div className="flex justify-center">
                 <button
                   type="submit"
                   disabled={loading}
                   className={`rounded-2xl px-2 py-2 mt-4 text-white ${loading
-                      ? "bg-purple-300 cursor-not-allowed"
-                      : "bg-purple-500 hover:bg-purple-600"
+                    ? "bg-purple-300 cursor-not-allowed"
+                    : "bg-purple-500 hover:bg-purple-600"
                     }`}
                 >
                   {loading ? "Creating..." : "CREATE"}
